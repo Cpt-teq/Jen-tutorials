@@ -1,5 +1,5 @@
 public class SampleTest {
     public static void main(String[] args) {
-        System.out.println("Test Run 222");
+        System.out.println("Code running succesfully");
     }
 }
