@@ -2,20 +2,35 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo 'Building..'
+                git branch: 'main', url: 'https://github.com/Cpt-teq/Jen-tutorials.git'
             }
         }
-        stage('Test') {
+        stage('Build') {
             steps {
-                echo 'Testing..'
+                sh '''sh Build.sh
+                    echo "Build"'''
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                sh '''sh Deploy.sh
+                    echo "Deploy"'''
             }
+        }
+        stage('Unit') {
+            steps {
+                sh '''sh Unit.sh
+                    echo "Unit"'''
+                
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline completed'
         }
     }
 }
